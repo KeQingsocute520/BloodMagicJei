@@ -25,7 +25,7 @@ public class MeteorsCategory implements IRecipeCategory<MeteorsRecipeJEI> {
     public int version;
     public int cost = 1000000;
     public MeteorsCategory(IGuiHelper guiHelper) {
-        this.background = guiHelper.createBlankDrawable(144, 144);
+        this.background = guiHelper.createBlankDrawable(144, 120);
     }
 
     @Nonnull
@@ -55,13 +55,31 @@ public class MeteorsCategory implements IRecipeCategory<MeteorsRecipeJEI> {
         itemStackGroup.init(0, true, 144/2-9, 0);
 
 
-        for(int i = 0; i < recipeWrapper.getOutputCount(); ++i) {
-            int yPos = 18 + 18*(i/8);
-            int xPos = i % 8 * 18;
-            itemStackGroup.init(i + 1, false, new ItemStackTextRenderer(recipeWrapper.oreWeight.get(i)*100), xPos + 1, yPos + 1, 16, 16, 0, 0);
+        if(recipeWrapper.getOutputCount()<=12)
+        {
+            for(int i = 0; i < recipeWrapper.getOutputCount(); ++i) {
+                int yPos = 18 + 18*(i/4);
+                int xPos = 36 + i % 4 * 18;
+                itemStackGroup.init(i + 1, false, new ItemStackTextRenderer(recipeWrapper.oreWeight.get(i)*100), xPos + 1, yPos + 1, 16, 16, 0, 0);
 
+            }
+        }else if(recipeWrapper.getOutputCount()<=18)
+        {
+            for(int i = 0; i < recipeWrapper.getOutputCount(); ++i) {
+                int yPos = 18 + 18*(i/6);
+                int xPos = 18 + i % 6 * 18;
+                itemStackGroup.init(i + 1, false, new ItemStackTextRenderer(recipeWrapper.oreWeight.get(i)*100), xPos + 1, yPos + 1, 16, 16, 0, 0);
+
+            }
         }
+        else {
+            for (int i = 0; i < recipeWrapper.getOutputCount(); ++i) {
+                int yPos = 18 + 18 * (i / 8);
+                int xPos = i % 8 * 18;
+                itemStackGroup.init(i + 1, false, new ItemStackTextRenderer(recipeWrapper.oreWeight.get(i) * 100), xPos + 1, yPos + 1, 16, 16, 0, 0);
 
+            }
+        }
         itemStackGroup.set(ingredients);
 
         this.explosionStrength=recipeWrapper.getExplosionStrength();
@@ -72,19 +90,19 @@ public class MeteorsCategory implements IRecipeCategory<MeteorsRecipeJEI> {
     }
     public void drawExtras(Minecraft minecraft) {
         String explosionStrength = I18n.format("bmj.meteors.explosionStrength", this.explosionStrength);
-        minecraft.fontRenderer.drawString(explosionStrength, 0, 100, 0x111111);
+        minecraft.fontRenderer.drawString(explosionStrength, 0, 75, 0x111111);
 
         String radius = I18n.format("bmj.meteors.radius", this.radius);
-        minecraft.fontRenderer.drawString(radius, 0, 110, 0x111111);
+        minecraft.fontRenderer.drawString(radius, 0, 85, 0x111111);
 
         String maxWeight = I18n.format("bmj.meteors.maxWeight", this.maxWeight);
-        minecraft.fontRenderer.drawString(maxWeight, 0, 120, 0x111111);
+        minecraft.fontRenderer.drawString(maxWeight, 0, 95, 0x111111);
 
         String version = I18n.format("bmj.meteors.version", this.version);
-        minecraft.fontRenderer.drawString(version, 0, 130, 0x111111);
+        minecraft.fontRenderer.drawString(version, 0, 105, 0x111111);
 
         String cost = I18n.format("bmj.meteors.cost", this.cost);
-        minecraft.fontRenderer.drawString(cost, 0, 140, 0x111111);
+        minecraft.fontRenderer.drawString(cost, 0, 115, 0x111111);
     }
     @Nonnull
     public String getModName() {
