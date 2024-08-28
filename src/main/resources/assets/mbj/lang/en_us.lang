@@ -1,0 +1,7 @@
+bmj.meteors.jei=Meteors
+
+bmj.meteors.explosionStrength=Explosion Strength: %s
+bmj.meteors.radius=Explosion Radius: %s
+bmj.meteors.maxWeight=Maximum Weight: %s
+bmj.meteors.version=Level: %s
+bmj.meteors.cost=Cost: %s

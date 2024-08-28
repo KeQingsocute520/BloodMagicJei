@@ -78,7 +78,7 @@ minecraft {
     useDependencyAccessTransformers.set(propertyBool('use_dependency_at_files'))
 
     username.set(propertyString('minecraft_username'))
-    
+
     // Add any additional tweaker classes here
     extraTweakClasses.addAll(propertyStringList('extra_tweak_classes'))
 
@@ -144,6 +144,10 @@ dependencies {
         testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
+
+    implementation rfg.deobf(files("libs/jei_1.12.2-4.16.1.1003.jar"))
+    implementation rfg.deobf(files("libs/BloodMagic-1.12.2-2.4.3-105.jar"))
+    implementation rfg.deobf(files("libs/Guide-API-1.12-2.1.8-63.jar"))
 }
 
 apply from: 'gradle/scripts/dependencies.gradle'
@@ -181,7 +185,7 @@ processResources {
                 'mixin_package': propertyString('mixin_package')
         )
     }
-    
+
     if (propertyBool('use_access_transformer')) {
         rename '(.+_at.cfg)', 'META-INF/$1'
     }
